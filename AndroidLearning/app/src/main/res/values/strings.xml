@@ -3,5 +3,30 @@
   -->
 
 <resources>
+    <!-- アプリ名 -->
     <string name="app_name">AndroidLearning</string>
+
+    <!-- メインアクティビティタイトル -->
+    <string name="title_main_activity">Freemake</string>
+
+    <!-- ボタンラベル -->
+    <string name="button_label_plus">+</string>
+    <string name="button_label_minus">-</string>
+    <string name="button_label_add">追加</string>
+    <string name="button_label_sub">削除</string>
+    <string name="button_label_clear">クリア</string>
+    <string name="button_label_total_quantity_selected">選択された合計数量</string>
+
+    <!-- コメント入力欄ヒント -->
+    <string name="hint_comment">コメント</string>
+
+    <!-- 数量表示欄ラベル -->
+    <string name="text_label_quantity">数量%1$s</string>
+
+    <!-- 入力エラーメッセージ -->
+    <string name="message_input_error">入力できません。</string>
+
+    <!-- ダイアログメッセージ -->
+    <string name="message_total_quantity_selected">合計%1$dです。</string>
+
 </resources>

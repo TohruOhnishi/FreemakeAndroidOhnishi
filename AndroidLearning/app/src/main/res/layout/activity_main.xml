@@ -4,20 +4,108 @@
   ~ Copyright 2017 freemake.
   -->
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="freemake.co.jp.androidlearning.Activity.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+        <!-- 数量表示欄、プラスボタン、マイナスボタン表示領域 -->
+        <RelativeLayout
+            android:id="@+id/container_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <!-- 数量表示欄 -->
+            <TextView
+                android:id="@+id/text_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true" />
+
+            <!-- プラスボタン -->
+            <Button
+                android:id="@+id/button_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/button_minus"
+                android:text="@string/button_label_plus" />
+
+            <!-- マイナスボタン -->
+            <Button
+                android:id="@+id/button_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/button_label_minus" />
+
+        </RelativeLayout>
+
+        <!-- リスト追加操作領域 -->
+        <RelativeLayout
+            android:id="@+id/container_add_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/container_header">
+
+            <!-- 現在時刻表示欄 -->
+            <TextView
+                android:id="@+id/text_current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true" />
+
+            <!-- コメント入力領域 -->
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/button_add"
+                android:layout_toRightOf="@+id/text_current_time"
+                android:hint="@string/hint_comment" />
+
+            <!-- 追加ボタン -->
+            <Button
+                android:id="@+id/button_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/button_label_add" />
+
+        </RelativeLayout>
+
+        <!-- リスト -->
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/container_footer"
+            android:layout_below="@+id/container_add_list" />
+
+        <!-- クリアボタン、選択された合計数量ボタン表示領域 -->
+        <RelativeLayout
+            android:id="@+id/container_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <!-- クリアボタン -->
+            <Button
+                android:id="@+id/button_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/button_label_clear" />
+
+            <!-- 選択された合計数量ボタン -->
+            <Button
+                android:id="@+id/button_total_quantity_selected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/button_clear"
+                android:text="@string/button_label_total_quantity_selected" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</layout>
