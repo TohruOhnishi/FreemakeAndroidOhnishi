@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2017 freemake.
+  -->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="freemake.co.jp.androidlearning.MainActivity">
+    tools:context="freemake.co.jp.androidlearning.Activity.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
