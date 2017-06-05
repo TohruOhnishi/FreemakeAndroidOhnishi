@@ -12,11 +12,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import freemake.co.jp.androidlearning.Adapter.QuantityInfoAdapter;
 import freemake.co.jp.androidlearning.Common.LogUtil;
+import freemake.co.jp.androidlearning.Model.QuantityInfoEntity;
 import freemake.co.jp.androidlearning.R;
 import freemake.co.jp.androidlearning.databinding.ActivityMainBinding;
 
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 数量初期値.
      */
-    private static final int INIT_QUANTITY = 9990;
+    private static final int INIT_QUANTITY = 0;
 
     /**
      * 最大数量.
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 現在時刻表示フォーマット.
      */
-    private static final SimpleDateFormat mCurrentDataFormat = new SimpleDateFormat("HH:mm:ss");
+    private static final SimpleDateFormat CURRENT_DATE_FORMAT = new SimpleDateFormat("HH:mm:ss");
 
     /**
      * {@link ActivityMainBinding}
@@ -85,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private Timer mTimer;
 
+    /**
+     * 数量情報リストアダプタ保持用.
+     */
+    private QuantityInfoAdapter mAdapter;
 
     /**
      * {@inheritDoc}
@@ -194,6 +201,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 選択された合計数量ボタン
         mBinding.buttonTotalQuantitySelected.setOnClickListener(this);
 
+        // 追加情報リスト表示
+        showQuantityInfoList();
+
         LogUtil.endMethod();
     }
 
@@ -236,7 +246,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void onClickAdd() {
         LogUtil.startMethod();
-        // TODO:リストを追加する処理未実装
+
+        QuantityInfoEntity addValue = new QuantityInfoEntity();
+        addValue.setAddDate(mBinding.textCurrentTime.getText().toString());
+        addValue.setQuantity(mQuantity);
+        addValue.setComment(mBinding.editComment.getText().toString());
+        if (mAdapter != null) {
+            mAdapter.add(addValue);
+        }
+
         LogUtil.endMethod();
 
     }
@@ -246,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void onClickClear() {
         LogUtil.startMethod();
-        // TODO:リストを全件削除する処理未実装
+        mAdapter.clear();
         LogUtil.endMethod();
     }
 
@@ -255,7 +273,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void onClickTotalQuantitySelected() {
         LogUtil.startMethod();
-        // TODO:リストで選択された数量の合計をダイアログに表示する処理未実装
+
+        // 選択された合計数量をメッセージダイアログで表示
+        String dialogMessage = getString(R.string.message_total_quantity_selected, getAllQuantity());
+        showMessageDialog(dialogMessage);
+
         LogUtil.endMethod();
     }
 
@@ -293,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showMessageDialog(String message) {
         LogUtil.startMethod();
         // TODO:ダイアログを表示する処理未実装
+        showToast(message);
         LogUtil.endMethod();
     }
 
@@ -300,6 +323,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 現在時刻を表示する.
      */
     private void showCurrentTime() {
+        LogUtil.startMethod();
+
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
         mTimer.schedule(new TimerTask() {
@@ -311,13 +336,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
                 mHandler.post(new Runnable() {
                     public void run() {
+                        LogUtil.startMethod();
                         Calendar calendar = Calendar.getInstance();
-                        String nowDate = mCurrentDataFormat.format(calendar.getTime());
+                        String nowDate = CURRENT_DATE_FORMAT.format(calendar.getTime());
                         mBinding.textCurrentTime.setText(nowDate);
+                        LogUtil.endMethod();
                     }
                 });
             }
         }, DELAY_TIME, PERIOD_TIME);
+        LogUtil.endMethod();
     }
 
     /**
@@ -327,6 +355,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private int getQuantity() {
         //TODO:初期値を返すのみ、外部から取得するようにする?
+        LogUtil.startMethod();
+        LogUtil.endMethod();
         return INIT_QUANTITY;
+    }
+
+    /**
+     * 追加情報リストを表示する.
+     */
+    private void showQuantityInfoList() {
+        LogUtil.startMethod();
+
+        ArrayList<QuantityInfoEntity> quantityInfoList = getQuantityInfo();
+        mAdapter = new QuantityInfoAdapter(this, 0, quantityInfoList);
+        mBinding.listQuantityInfo.setAdapter(mAdapter);
+
+        LogUtil.endMethod();
+    }
+
+    /**
+     * 数量情報を取得する.
+     *
+     * @return 数量情報
+     */
+    private ArrayList<QuantityInfoEntity> getQuantityInfo() {
+        LogUtil.startMethod();
+        ArrayList<QuantityInfoEntity> quantityInfoList = new ArrayList<>();
+        LogUtil.endMethod();
+        return quantityInfoList;
+    }
+
+    /**
+     * 数量の総数を取得する.
+     *
+     * @return 数量の総数
+     */
+    private int getAllQuantity() {
+        LogUtil.startMethod();
+        LogUtil.endMethod();
+        return mAdapter.getAllQuantity();
     }
 }

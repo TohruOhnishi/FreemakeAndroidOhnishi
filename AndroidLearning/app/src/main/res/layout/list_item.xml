@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2017 freemake.
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="QuantityInfo"
+            type="freemake.co.jp.androidlearning.Model.QuantityInfoEntity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- リストアイテム選択チェックボックス -->
+        <CheckBox
+            android:id="@+id/check_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:checked="@{QuantityInfo.selected}" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/button_remove"
+            android:layout_toRightOf="@+id/check_list_item">
+
+            <!-- 追加時刻表示欄 -->
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@{QuantityInfo.addDate}" />
+
+            <!-- 数量表示欄 -->
+            <TextView
+                android:id="@+id/text_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@{QuantityInfo.quantityString}" />
+
+            <!-- コメント表示欄 -->
+            <TextView
+                android:id="@+id/text_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@{QuantityInfo.comment}" />
+
+        </RelativeLayout>
+
+        <!-- 削除ボタン -->
+        <Button
+            android:id="@+id/button_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/button_label_remove" />
+
+    </RelativeLayout>
+</layout>

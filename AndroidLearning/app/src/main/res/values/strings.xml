@@ -13,7 +13,7 @@
     <string name="button_label_plus">+</string>
     <string name="button_label_minus">-</string>
     <string name="button_label_add">追加</string>
-    <string name="button_label_sub">削除</string>
+    <string name="button_label_remove">削除</string>
     <string name="button_label_clear">クリア</string>
     <string name="button_label_total_quantity_selected">選択された合計数量</string>
 
